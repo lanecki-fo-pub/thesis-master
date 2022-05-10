@@ -1,16 +1,21 @@
-all: render
+all: render clean
 	@echo "done"
 
 render:
-	@echo "rendering booklet"
+	@echo "building..."
 	@pandoc \
-		--pdf-engine=lualatex \
 		--lua-filter=lyt/include.lua \
 		--template=lyt/template.tex \
 		--from markdown \
 		src/root.md \
-		-o bounce.pdf
+		-o build.tex
+	@echo "rendering..."
+	@lualatex --draftmode build.tex 1>build.trash &>build.trash
+	@bibtex build 1>build.trash &>build.trash
+	@lualatex build.tex 1>build.trash &>build.trash # compile twice for bibliography
+	@mv build.pdf paper.pdf
 
 clean:
-	@echo "cleaning up"
-	@rm -f "bounce.pdf"
+	@echo "cleaning up..."
+	@find . -name "build*" -delete
+	@rm -f texput.log

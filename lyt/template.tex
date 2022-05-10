@@ -1,5 +1,4 @@
 \documentclass{article}
-%% # packages %%
 
 %% # markdown %%
 \usepackage{caption,booktabs}
@@ -10,7 +9,27 @@
 % conversion breaks without this
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+%% # layout %%
+\usepackage{parskip}
+
+%% # maths %%
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage[
+backend=bibtex,
+style=alphabetic,
+maxbibnames=6,
+sorting=ynt
+]{biblatex}
+\addbibresource{sources.bib}
+
+\usepackage{lyt/macro}
+
 %% # document %%
 \begin{document}
+\newtheorem{theorem}{Theorem}
 $body$
 \end{document}
