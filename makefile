@@ -10,9 +10,9 @@ render:
 		src/root.md \
 		-o build.tex
 	@echo "rendering..."
-	@lualatex --draftmode build.tex 1>build.trash &>build.trash
-	@bibtex build 1>build.trash &>build.trash
-	@lualatex build.tex 1>build.trash &>build.trash # compile twice for bibliography
+	@lualatex --draftmode build.tex #1>build.trash &>build.trash
+	@bibtex build #1>build.trash &>build.trash
+	@lualatex build.tex #1>build.trash &>build.trash # compile twice for bibliography
 	@mv build.pdf paper.pdf
 
 clean:
