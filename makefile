@@ -18,4 +18,5 @@ render:
 clean:
 	@echo "cleaning up..."
 	@find . -name "build*" -delete
+	@find . -name "*.aux" -delete
 	@rm -f texput.log

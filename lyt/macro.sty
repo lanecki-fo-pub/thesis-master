@@ -5,23 +5,20 @@
 \newcommand\CDS{\Pi}
 
 % # symbols
-\newcommand\dfeq{\overset{\triangle}{=}}
+\newcommand\dfeq{\mathrel{\vcenter{\baselineskip0.5ex\lineskiplimit0pt\hbox{\scriptsize.}\hbox{\scriptsize.}}}=}
 
 % # functions
-\newcommand\setop[1]{\mathsf{#1}}
-\newcommand\dom[1]{\setop{dm}#1}
-\newcommand\img[1]{\setop{im}#1}
-\newcommand\krn[1]{\setop{ker}#1}
-\newcommand\itr[1]{\setop{int}#1}
-\newcommand\cls[1]{\setop{cl}#1}
-\newcommand\mth[1]{\setop{mo}#1}
-\newcommand\dmn[1]{\setop{dim}#1}
-\newcommand\sgn[1]{\setop{sgn}#1}
-\newcommand\ort[1]{\setop{ort}#1}
+\DeclareMathOperator{\dom}{dm}
+\DeclareMathOperator{\img}{im}
+\DeclareMathOperator{\krn}{ker}
+\DeclareMathOperator{\itr}{int}
+\DeclareMathOperator{\cls}{cl}
+\DeclareMathOperator{\mth}{mo}
+\DeclareMathOperator{\dmn}{dim}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\ort}{ort}
+
 \newcommand\eSol[1]{\mathrm{eSol}_{\CMvF}(#1)}
 \newcommand\cat[1]{\mathtt{#1}}
 
-\newcommand\quot[2]{#1 / #2}
-
-% # layout
-\newcommand\xmpl[1]{#1}
+\newcommand\quot[2]{{^{\textstyle #1}\big/_{\textstyle #2}}}
