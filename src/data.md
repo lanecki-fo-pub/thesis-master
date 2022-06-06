@@ -19,7 +19,7 @@ STAID & DATE & TG & PP & ELEV & LAT & LON \\
 299 & 19910103 & -3.7 & 991.4 & 50 & 65.599 & -36.366 \\
 \hline
 \end{tabular}
-\caption{Sample rows from the dataset of direct measurements.}
+\caption{Sample rows from the dataset of direct measurements. STAID and DATE are the index of the station and the date of measurement. TG and PP are the measured temeprature in degrees Celcius and the measured pressure in hectopascals. ELEV, LAT and LON are the spacial coordinates of the station, elevation in meters above sea level, latitide in degrees and longitude in degrees. Own work.}
 \label{data-direct}
 \end{table}
 
@@ -36,7 +36,7 @@ To be able to efficiently apply our method, we separate the time and station ind
 \centering
 \includegraphics[width=\textwidth]{fig/morse-direct.jpg}
 \end{subfigure}
-\caption{The Morse decomposition of the data taken from direct measurements. On the left, we depict all multivectors, on the right only the Morse sets.}
+\caption{The Morse decomposition of the data taken from direct measurements. On the left, we depict all multivectors, on the right only the Morse sets. Own work.}
 \label{fig-direct-morse}
 \end{figure}
 
@@ -54,15 +54,15 @@ As before, the data consists of two time series for every location, however, the
 \centering
 \includegraphics[width=\textwidth]{fig/morse-reanalysis.jpg}
 \end{subfigure}
-\caption{The Morse decomposition of the reanalysed data. On the left, we depict all multivectors, on the right only the Morse sets.}
+\caption{The Morse decomposition of the reanalysed data. On the left, we depict all multivectors, on the right only the Morse sets. Own work.}
 \label{fig-reanalyse-morse}
 \end{figure}
 
 ## Results
-It is clear from the example in chapter four, that the method can produce a Morse decomposition, which reflects the underlying dynamics of the original system. However, in the presence of noise — such as in our meteorological data — both the number of nontransversal edges and the number of very small morse sets are larger than one would hope. This results in images, which are hard to analyse definitively. However, some larger Morse sets are visible and could represent actual meteorological phenomena.
+It is clear from the example in chapter four, that the method can produce a Morse decomposition, which reflects the underlying dynamics of the original system. However, in the presence of noise — such as in our meteorological data — both the number of nontransversal edges and the number of very small Morse sets are larger than one would hope. This results in images, which are hard to analyse definitively. However, some larger Morse sets are visible and could represent actual meteorological phenomena.
 
 One way to mitigate the noise in further studies would be to first subdivide the domain into a net of simplices, then count the number of transitions from one simplex to another. Then, a face between two simplices could be called transversal if the number of transitions is sufficiently large or if the transitions happen mostly in one direction. A Morse decomposition of such a system should be more resilient to small scale noise.
 
 Moreover, given a sufficiently large data set, instead of considering all the transitions at once, one could construct a sampled vector field at every time instance, or divide the datasets based on additional knowledge. In our case, it might be reasonable to construct a sampled vector field for every decade, every year or every season. Given such a sequence, we could track the persistence of the Morse decompositions or Conley-Morse graphs.
 
-This approach could also be used to analyse changes in atmospheric patterns through time, by observing changes in the Morse decompositions or even Conley-Morse graphs. The Conley-Morse graph could be used as a descriptor — or maybe even predictor — of atmospheric circulation.
+This approach could also be used to analyse changes in atmospheric patterns through time, by observing changes in the Morse decompositions or even Conley-Morse graphs. The Conley-Morse graph could be used as a descriptor — or maybe even a predictor of future states — of atmospheric circulation.

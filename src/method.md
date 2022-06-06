@@ -5,16 +5,16 @@ The method takes as input a sampled vector field — that is a partial map $\psi
 The method has two stages, the first is to translate the sampled vector field into a combinatorial multivector field, while the second one is to calculate the Morse decomposition of the combinatorial dynamical system associated with the combinatorial multivector field. From Theorem \ref{morse-graph} we know that the Morse decomposition can be calculated by finding the strongly connected components of the combinatorial dynamical system. There are many algorithms for finding strongly connected components in directed graphs, such as \cite{tarjan} and \cite{sharir}, hence we will not focus on this stage too much. The first stage is based largely on a paper currently in preparation \cite{donald}.
 
 ## Classical Dynamical System
-We describe the method by means of a simple example. Take the system of first-order differential equations: \begin{equation}\label{eq-classical}\begin{aligned}x'&=-y + x(1-x^2-y^2)^2\\y'&=x+y(1-x^2-y^2)^2\end{aligned}\end{equation} This system produces a dynamical system with a repelling stationary point at the origin and an unstable periodic orbit at the unit circle, see figure \ref{fig-sample-ds-streamplot}.
+We describe the method by means of a simple example. Take the system of first-order differential equations: \begin{equation}\label{eq-classical}\begin{aligned}x'&=-y + x(1-x^2-y^2)^2\\y'&=x+y(1-x^2-y^2)^2\end{aligned}\end{equation} This system produces a dynamical system with a repelling stationary point at the origin and an unstable periodic orbit at the unit circle, see Figure \ref{fig-sample-ds-streamplot}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.64\textwidth]{fig/sample-ds-streamplot.pdf}
-\caption{The stream plot of the described dynamical system. The repelling point and saddle orbit are clearly visible.}
+\caption{The stream plot of the described dynamical system. The repelling point and saddle orbit are clearly visible. Own work.}
 \label{fig-sample-ds-streamplot}
 \end{figure}
 
-We now randomly select a set $D$ of $n$ points from the $[-2,2]^2\subseteq\mathbb{R}^2$ square. Of course, $\mathbb{R}^2$ with the usual dot product $\mathbb{R}^2\times\mathbb{R}^2\ni(v,w)\mapsto v^\top w\dfeq v_0w_0+v_1w_1\in\mathbb{R}$ is an inner product space. We define our sampled vector field on the set $D$ as $\psi\colon D\ni(x,y)\mapsto(x',y')\in\mathbb{R}^2$, giving us a partial map $\psi\colon\mathbb{R}^2\rightharpoonup\mathbb{R}^2$.
+We now randomly select a set $D$ of $n$ points from the $[-2,2]^2\subseteq\mathbb{R}^2$ square with a uniform distribution. Of course, $\mathbb{R}^2$ with the usual dot product $\mathbb{R}^2\times\mathbb{R}^2\ni(v,w)\mapsto v^\top w\dfeq v_0w_0+v_1w_1\in\mathbb{R}$ is an inner product space. We define our sampled vector field on the set $D$ as $\psi\colon D\ni(x,y)\mapsto(x',y')\in\mathbb{R}^2$, giving us a partial map $\psi\colon\mathbb{R}^2\rightharpoonup\mathbb{R}^2$.
 
 Now, we triangulate the set $D$ to produce a two-dimensional simplicial complex $\mathcal{K}(D)$. We use the algorithm described in \cite{delauney} to triangulate. Moreover, we add a point $\omega$ at infinity and for every edge $(v_j,v_k)$ on the boundary of the triangulation we construct a triangle $(\omega,v_j,v_k)$, in order to compactify our space. Recall, that the simplices of this complex constitute a poset $\mathcal{P}(\mathcal{K}(D))$. We will focus on the topological space $X=\mathcal{T}(\mathcal{P}(\mathcal{K}(D)))$ associated with this poset by the Alexandroff Theorem.
 
@@ -28,7 +28,7 @@ A transversal edge $e$ of a triangle $t$ is **inbound** to $t$ if the normal vec
 
 A vertex $v$ of a triangle $t$ is **inbound** to $t$ if the vector $\psi(v)$ points towards the inside of $t$.  We mark the infinity point $\omega$ as inbound to all triangles that contain it, it is clear from the following construction that it is harmless. If the triangle $t$ contains the infinity point $\omega$, a vertex, which is not the infinity point, is inbound if it is not inbound to any of the non-infinity containing triangles which contain it.
 
-> More concretely, given a triangle $(v,w,u)$, a transversal edge $(v,w)$ is inbound if \begin{equation}\label{eq-edge}\sgn{(n(v,w)^\top\psi(v))}\cdot n(v,w)^\top((u-v)+(u-w))>0\end{equation} where $\sgn{x}$ is the sign function. A vertex $v$ is inbound if both \begin{equation}\label{eq-vertex}\begin{aligned}\ort{(\ort{(w-v,u-v)}\cdot(w-v),\psi(v))}&>0\\\ort{(-\ort{(w-v,u-v)}\cdot(u-v),\psi(v))}&>0\end{aligned}\end{equation} where $\ort{(x,y)}$ is the orientation of vectors $x$ and $y$. These equations are visualised in Figure \ref{fig-eqs}.
+> More concretely, given a triangle $(v,w,u)$, a transversal edge $(v,w)$ is inbound if \begin{equation}\label{eq-edge}\sgn{(n(v,w)^\top\psi(v))}\cdot n(v,w)^\top((u-v)+(u-w))>0\end{equation} where $\sgn{}$ is the sign function. A vertex $v$ is inbound if both \begin{equation}\label{eq-vertex}\begin{aligned}\ort{(\ort{(w-v,u-v)}\cdot(w-v),\psi(v))}&>0\\\ort{(-\ort{(w-v,u-v)}\cdot(u-v),\psi(v))}&>0\end{aligned}\end{equation} where $\ort{(x,y)}$ is the orientation of vectors $x$ and $y$. These equations are visualised in Figure \ref{fig-eqs}.
 
 \begin{figure}[h]
 \centering
@@ -41,7 +41,7 @@ A vertex $v$ of a triangle $t$ is **inbound** to $t$ if the vector $\psi(v)$ poi
 \centering
 \includegraphics[width=\textwidth]{fig/inbound-vertex.pdf}
 \end{subfigure}
-\caption{Visualisation of inboundness equations (\ref{eq-edge}) and (\ref{eq-vertex}) for an edge (left) and a vertex (right). The signum function in equation (\ref{eq-edge}) covers the fact that the normal vector may point outside.}
+\caption{Visualisation of inboundness equations (\ref{eq-edge}) and (\ref{eq-vertex}) for an edge (left) and a vertex (right). The signum function in equation (\ref{eq-edge}) covers the fact that the normal vector may point outside. Own work.}
 \label{fig-eqs}
 \end{figure}
 
@@ -60,7 +60,7 @@ Let us examine the purpose of the infinity point $\omega$. It is possible to obt
 Collecting the steps described above, we obtain Algorithm \ref{alg-method}.
 
 \begin{algorithm}[!h]
-\caption{Morse decomposition of a sampled vector field.}
+\caption{Morse decomposition of a sampled vector field. Own work.}
 \label{alg-method}
 \begin{algorithmic}
 \Require a sampled vector field $\psi$
@@ -78,7 +78,7 @@ Following Algorithm \ref{alg-method} for the right-hand side of (\ref{eq-classic
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.64\textwidth]{fig/morse-sample-1296.pdf}
-\caption{The Morse decomposition of a combinatorial multivector field obtaining by sampling the right-hand side of (\ref{eq-classical}) in 1296 points. The Morse set representing the repelling point is encapsulated by the set in khaki, and the Morse set representing the unstable orbit in brown.}
+\caption{The Morse decomposition of a combinatorial multivector field obtaining by sampling the right-hand side of (\ref{eq-classical}) in 1296 points. The Morse set representing the repelling point is encapsulated by the set in khaki, and the Morse set representing the unstable orbit in brown. Own work.}
 \label{fig-sample-ds-morse}
 \end{figure}
 
