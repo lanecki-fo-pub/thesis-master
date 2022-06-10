@@ -1,6 +1,6 @@
 \newpage
 # Method
-The method takes as input a sampled vector field — that is a partial map $\psi\colon W\rightharpoonup W$ on an inner product space $W$, such that $\lvert\dom{\psi}\rvert<\aleph_0$ — and produces a Morse decomposition of a hopefully related combinatorial dynamical system. In this chapter we present the method in detail, producing the sampled vector field from a classical differential equation. In the following chapter, we will construct the sampled vector field from time series data and jump straight to the resulting Morse decomposition.
+The method takes as input a sampled vector field — that is a partial map $\psi\colon W\rightharpoonup W$ on an inner product space $W$, such that $\lvert\dom{\psi}\rvert<\aleph_0$ — and produces a Morse decomposition of a hopefully related combinatorial dynamical system. In this chapter we present the method in detail, producing the sampled vector field from a classical differential equation. In hapter six, we construct the sampled vector field from time-series data and jump straight to the resulting Morse decomposition.
 
 The method has two stages, the first is to translate the sampled vector field into a combinatorial multivector field, while the second one is to calculate the Morse decomposition of the combinatorial dynamical system associated with the combinatorial multivector field. From Theorem \ref{morse-graph} we know that the Morse decomposition can be calculated by finding the strongly connected components of the combinatorial dynamical system. There are many algorithms for finding strongly connected components in directed graphs, such as \cite{tarjan} and \cite{sharir}, hence we will not focus on this stage too much. The first stage is based largely on a paper currently in preparation \cite{donald}.
 
@@ -24,9 +24,9 @@ Our goal is to produce a combinatorial multivector field on $X$ in such a way as
 
 In broad strokes, we merge simplices which share a nontransversal face into one multivector, to hide the unknown behaviour and complexity inside the multivectors. More concretely, we check the transversality of all faces of codimension one and construct an undirected graph $(T,\text{ntE})$, where the vertex set $T$ is the set of top dimensional simplices and two simplices are connected if they share a nontransversal face. If we consider this graph to be directed — every edge points in both directions — the set $\mathcal{C}$ of strongly connected components will form the basis for the construction of our multivector field.
 
-A transversal edge $e$ of a triangle $t$ is **inbound** to $t$ if the normal vector is aligned with the flow points towards the inside of $t$. If the triangle $t$ contains the infinity point $\omega$, a transversal edge is inbound if it is not inbound to the other triangle sharing this edge.
+A transversal edge $e$ of a triangle $t$ is **inbound** to $t$ if the normal vector aligned with the flow points towards the inside of $t$. If the triangle $t$ contains the infinity point $\omega$, a transversal edge is inbound if it is not inbound to the other triangle sharing this edge.
 
-A vertex $v$ of a triangle $t$ is **inbound** to $t$ if the vector $\psi(v)$ points towards the inside of $t$.  We mark the infinity point $\omega$ as inbound to all triangles that contain it, it is clear from the following construction that it is harmless. If the triangle $t$ contains the infinity point $\omega$, a vertex, which is not the infinity point, is inbound if it is not inbound to any of the non-infinity containing triangles which contain it.
+A vertex $v$ of a triangle $t$ is **inbound** to $t$ if the vector $\psi(v)$ points towards the inside of $t$.  We mark the infinity point $\omega$ as inbound to all triangles that contain it, it is clear from the following construction that it is harmless. If the triangle $t$ contains the infinity point $\omega$, a vertex, which is not the infinity point, is inbound if it is not inbound to any of the non-infinity-containing triangles which contain it.
 
 > More concretely, given a triangle $(v,w,u)$, a transversal edge $(v,w)$ is inbound if \begin{equation}\label{eq-edge}\sgn{(n(v,w)^\top\psi(v))}\cdot n(v,w)^\top((u-v)+(u-w))>0\end{equation} where $\sgn{}$ is the sign function. A vertex $v$ is inbound if both \begin{equation}\label{eq-vertex}\begin{aligned}\ort{(\ort{(w-v,u-v)}\cdot(w-v),\psi(v))}&>0\\\ort{(-\ort{(w-v,u-v)}\cdot(u-v),\psi(v))}&>0\end{aligned}\end{equation} where $\ort{(x,y)}$ is the orientation of vectors $x$ and $y$. These equations are visualised in Figure \ref{fig-eqs}.
 
@@ -60,7 +60,7 @@ Let us examine the purpose of the infinity point $\omega$. It is possible to obt
 Collecting the steps described above, we obtain Algorithm \ref{alg-method}.
 
 \begin{algorithm}[!h]
-\caption{Morse decomposition of a sampled vector field. Own work.}
+\caption{Morse decomposition of a sampled vector field.}
 \label{alg-method}
 \begin{algorithmic}
 \Require a sampled vector field $\psi$
@@ -78,8 +78,8 @@ Following Algorithm \ref{alg-method} for the right-hand side of (\ref{eq-classic
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.64\textwidth]{fig/morse-sample-1296.pdf}
-\caption{The Morse decomposition of a combinatorial multivector field obtaining by sampling the right-hand side of (\ref{eq-classical}) in 1296 points. The Morse set representing the repelling point is encapsulated by the set in khaki, and the Morse set representing the unstable orbit in brown. Own work.}
+\caption{The Morse decomposition of a combinatorial multivector field obtained by sampling the right-hand side of (\ref{eq-classical}) in 1296 points. The Morse set representing the repelling point is encapsulated by the set in khaki, and the Morse set representing the unstable orbit in brown. Own work.}
 \label{fig-sample-ds-morse}
 \end{figure}
 
-Now, an avid reader will notice that parts of the method were only described for two-dimensional spaces. However, one can define the notions of transversality as well as inboundness for higher-dimensional simplices. Transversality is of course only defined for faces of codimension one. The intuitive definitions remain the same, however, the technical details get even more technical and the proof that what we obtain is indeed a multivector field becomes more involved. Nevertheless, our analysis in the following chapter will only use this two-dimensional case.
+Now, an avid reader will notice that parts of the method were only described for two-dimensional spaces. However, one can define the notions of transversality as well as inboundness for higher-dimensional simplices. Transversality is of course only defined for faces of codimension one. The intuitive definitions remain the same, however, the technical details get even more technical and the proof that what we obtain is indeed a multivector field becomes more involved. Nevertheless, our analysis in chapter six will only use this two-dimensional case.
